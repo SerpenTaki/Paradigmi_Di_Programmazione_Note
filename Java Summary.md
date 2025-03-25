@@ -410,3 +410,58 @@ class Foo {
 }
 ```
 # STL
+I JavaDoc sono organizzati per "moduli".
+Un **Modulo** è un insieme di package e tipi, di cui può controllare l'accesso dall'esterno. Si tratta di una unità di organizzazione del codice Java superiore al package. Il principale caso d'uso dei moduli è la modularizzazione della piattaforma Java. I moduli consentono di separare il JDK in parti più piccole e creare delle distribuzioni che contengono solo i moduli necessari allo scopo di rendere più agevole la pubblicazione di applicazioni complete.
+- `java.base`contiene la parte più basilare della STL
+- `java.sql`contiene le classi per interagire con i database relazionali.
+## Input/Output
+Le principali astrazioni sono il FIle, l'InputStream e l'OutputStream, da cui derivano le varie implementazioni.
+Gli usi più comuni sono attraverso le implementazioni delle classi Reader e Writer che forniscono metodi semplici per la lettura e scrittura di file testuali come per esempio BufferedReader e PrintWriter.
+```Java
+BufferedReader rd = new BufferedReader(
+	new FileReader(".hgignore"));
+String line;
+while (null != (line = rd.readLine()))
+	System.out.println(line);
+rd.close();
+```
+L'oggetto `System` fornisce, insieme ad altri servizi relativi all'interazione con il sistema, gli oggetti che rappresentano gli stream classici: `System.in, System.out, System.err`
+## Collection
+L'interfaccia `Collection`è la radice della libreria. Contiene i metodi più generali che tutte le interfacce più specifiche includono. Non ci sono implementazioni dirette di questa interfaccia, ma solo interfacce più specializzate. Diversi metodi sono marcati come "opzionali" , quindi in realtà le singole implementazioni sono libere di lanciare UnsupportedOperationException se non implementano l'operazione: il caso tipico sono le viste non modificabili di altre collezioni, che non permettono la modifica del loro contenuto. La maggior parte delle collezioni distingue i contenuti nel senso del metodo `java.lang.Object::equals()`, che quindi è necessario implementare correttamente in questi casi. L'operatore di confronto `==` non è utilizzabile fra oggetti, in quanto confronta solo l'identità: due istanze di una classe sono sempre diverse anche se rappresentano lo stesso valore.
+```Java
+class Point{
+	public int x, y;
+	
+	Point(int x, int y){
+		this.x = x; this.y = y;
+	}
+
+	Point twoTImes(){
+		x *= 2; y *= 2;
+		return this;
+	}
+}
+
+Point a = new Point(2, 1), b = new Point(3,4), c = new Point(2,1);
+a == b //false
+a == a //true
+a == c //false
+a == a.twoTimes() //true
+```
+La classe `Collections`raccoglie diversi metodi di utilità per applicare algoritmo alle collezioni, o per aggiungere particolari funzioni ad una collezione esistente.
+
+| **Metodo**        | **Risultato**                 |
+| ----------------- | ----------------------------- |
+| `checkedTTT`      | Controllo al runtime del tipo |
+| `emptyTTT`        | Collezione vuota              |
+| `syncronizedTTT`  | Collezione sincronizzata      |
+| `unmodifiableTTT` | Vista non modificabile        |
+| `binarySearch`    | Ricerca in una lista          |
+| `disjoint`        | Verifica se disgiunte         |
+| `fill`            | Riempie una collezione        |
+| `min, max`        | Trova max e min               |
+| `reverse`         | Inverte l'ordine              |
+| `shuffle`         | Ordina in modo causuale       |
+| `sort`            | Ordina la collezione          |
+La classe `Arrays`raccoglie altri metodi di utilità, concentrati invece sul trattamento degli array. Ci sono metodi che declinano quelli di `Collections`su vari tipi di array primitivi, ed alcuni relativi specificamente agli array.
+## Iterator/Able
