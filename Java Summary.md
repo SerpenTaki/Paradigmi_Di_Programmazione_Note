@@ -465,3 +465,18 @@ La classe `Collections`raccoglie diversi metodi di utilità per applicare algori
 | `sort`            | Ordina la collezione          |
 La classe `Arrays`raccoglie altri metodi di utilità, concentrati invece sul trattamento degli array. Ci sono metodi che declinano quelli di `Collections`su vari tipi di array primitivi, ed alcuni relativi specificamente agli array.
 ## Iterator/Able
+Un *Iterator* consente di elencare una collezione un elemento alla volta, individuando quando la si è attraversata completamente.
+Una classe *Iterable* può fornire un *Iterator* per essere attraversata.
+
+| `next`             | prossimo elemento                 |
+| ------------------ | --------------------------------- |
+| `hasNext`          | Verso se ci sono altri elementi   |
+| `remove`           | Rimuove l'elemento attuale        |
+| `forEachRemaining` | Consuma il resto della collezione |
+| `forEach`          | Applica ad ogni elemento          |
+| `iterator`         | Fornisci un `Iterator`            |
+| `spliterator`      | Fornisci uno `Spliterator`        |
+## List
+rappresenta un elenco ordinato di elementi, indirizzabili per posizione. Sono permessi elementi duplicati. Fornisce uno specifico iteratore, `ListIterator`capace di movimento bidirezionale e modifiche sulla lista attraversata.
+## Set
+definisce un contenitore di oggetti senza ripetizioni non ordinato.
