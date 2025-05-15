@@ -1,23 +1,27 @@
 package MM;
 
 public class Main {
+    static void myMethod() {
+        System.out.println("Hello from myMethod");
+    }
+
+    static void stampaNomeEdEta(String nome, int eta){
+        System.out.println(nome + " ha " + eta + " anni");
+    }
+
+    static int incrementaEtadiCinque(int eta){
+        for (int i = 0; i < 5; i++) {
+            eta++;
+        }
+        return eta;
+    }
+
     public static void main(String[] args) {
-        System.out.print("Hello world ");
-        System.out.println("Ciao mondo");
-        // This is a comment
-        String s = "Questa è una stringa";
-        System.out.println(s);
-        int i = 57;
-        System.out.println("Questo è un intero: " + i);
-        float f = 3.14f;
-        System.out.println("Questo è un float: " + f);
-        char c = 'a';
-        System.out.println("Questo è un char: " + c);
-        boolean b = true;
-        System.out.println("Questo è un boolean: " + b);
+        System.out.println("Hello World");
+        myMethod();
         String nome = "Mario";
-        String cognome = "Bianchi";
-        String nomeCompleto = nome + " " + cognome;
-        System.out.println("Nome completo: " + nomeCompleto);
+        int eta = 30;
+        stampaNomeEdEta(nome, eta);
+        System.out.println("L'eta incrementata di 5 e': " + incrementaEtadiCinque(eta));
     }
 }
